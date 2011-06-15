@@ -1,0 +1,9 @@
+Package: com.sirius247.smcnews
+Name: SMCNews
+Depends: firmware (>= 5.0)
+Version: 0.0.1
+Architecture: iphoneos-arm
+Description: An awesome widget for the notification center!
+Maintainer: Sean Caissie
+Author: Sean Caissie
+Section: Widgets

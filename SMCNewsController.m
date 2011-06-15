@@ -5,6 +5,7 @@
 @interface SMCNewsController : NSObject <BBWeeAppController>
 {
     UIView *_view;
+    UIWebView *webView;
 }
 
 + (void)initialize;
@@ -37,15 +38,25 @@
         [_view addSubview:bgView];
         [bgView release];
 	
-	UILabel *lbl = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 316, 71)];
-        lbl.backgroundColor = [UIColor clearColor];
-        lbl.textColor = [UIColor whiteColor];
-        lbl.text = @"SMCTech News Ticker Goes here";
-        lbl.textAlignment = UITextAlignmentCenter;
-        [_view addSubview:lbl];
-        [lbl release];
+        CGRect webFrame = CGRectMake(0, 0, 316, 71);
+        webView = [[UIWebView alloc] initWithFrame:webFrame];
+        [webView setBackgroundColor:[UIColor clearColor]];
+        NSString *urlAddress = @"http://www.smctechnologies.org/ticker";
+        NSURL *url = [NSURL URLWithString:urlAddress];
+        NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
+        [webView loadRequest:requestObj];
+        webView.userInteractionEnabled = YES;
+        [_view addSubview:webView];
+        [webView release];
     }
 return _view;
+}
+
+-  (void)goHome: (id)sender{
+    NSString *urlAddress = @"http://www.smctechnologies.org/ticker";
+    NSURL *url = [NSURL URLWithString:urlAddress];
+    NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
+    [webView loadRequest:requestObj];
 }
 
 - (float)viewHeight
